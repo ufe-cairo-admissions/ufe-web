@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admissions — Université Française d'Égypte (UFE)</title>
+  <style>
+    :root {
+      --ink: #111827;
+      --ink-soft: #4b5563;
+      --navy: #10233f;
+      --navy-hover: #1b365d;
+      --crimson: #b81d33;
+      --crimson-hover: #961527;
+      --sand: #f7f5f0;
+      --paper: #ffffff;
+      --border: #e2dfd7;
+      --gold-muted: #9a7b2c;
+      --serif: "Georgia", "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--sand);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.65;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle Top Institutional Strip */
+    .top-utility {
+      background: var(--navy);
+      color: #cbd5e1;
+      font-size: 0.78rem;
+      padding: 0.45rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tricolor-rule {
+      display: flex;
+      height: 3px;
+    }
+    .tricolor-rule span:nth-child(1) { flex: 1; background: #002395; }
+    .tricolor-rule span:nth-child(2) { flex: 1; background: #ffffff; }
+    .tricolor-rule span:nth-child(3) { flex: 1; background: #ed2939; }
+
+    /* Header & Navigation */
+    header {
+      background: var(--paper);
+      padding: 1.15rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--navy);
+    }
+
+    .brand-monogram {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      color: var(--navy);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+
+    .brand-sub {
+      font-size: 0.74rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--navy);
+      background: var(--sand);
+    }
+
+    nav a.active {
+      color: var(--crimson);
+      font-weight: 600;
+      box-shadow: inset 0 -2px 0 var(--crimson);
+      border-radius: 0;
+    }
+
+    nav a.nav-cta {
+      background: var(--navy);
+      color: var(--paper);
+      margin-left: 0.5rem;
+      border-radius: 4px;
+      box-shadow: none;
+    }
+
+    nav a.nav-cta:hover,
+    nav a.nav-cta.active {
+      background: var(--crimson);
+      color: var(--paper);
+    }
+
+    /* Main Layout */
+    main {
+      flex: 1;
+      width: 88%;
+      max-width: 1160px;
+      margin: 2.5rem auto;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Editorial Hero */
+    .hero-block {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      margin-bottom: 3rem;
+    }
+
+    .hero-content {
+      padding: 3.5rem 3.2rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--crimson);
+      margin-bottom: 0.9rem;
+      display: block;
+    }
+
+    .hero-content h1 {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-content p {
+      color: var(--ink-soft);
+      font-size: 1.04rem;
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--crimson);
+      color: var(--paper);
+    }
+
+    .btn-primary:hover {
+      background: var(--crimson-hover);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .btn-secondary:hover {
+      background: var(--navy);
+      color: var(--paper);
+    }
+
+    .hero-sidebar {
+      background: var(--navy);
+      color: var(--paper);
+      padding: 3rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-sidebar h2 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .fact-row {
+      margin-bottom: 1.15rem;
+    }
+
+    .fact-label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #94a3b8;
+    }
+
+    .fact-value {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: #f8fafc;
+    }
+
+    /* Section Headings */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-head h2 {
+      font-family: var(--serif);
+      font-size: 1.85rem;
+      color: var(--navy);
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    /* Three-Column Academic Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .pillar-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .pillar-num {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      color: var(--crimson);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .pillar-card h3 {
+      font-family: var(--serif);
+      font-size: 1.22rem;
+      color: var(--navy);
+      margin-bottom: 0.7rem;
+    }
+
+    .pillar-card p {
+      font-size: 0.94rem;
+      color: var(--ink-soft);
+    }
+
+    /* Clean Merit Table / Estimator */
+    .tuition-panel {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 2rem 2.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .tuition-panel h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .tuition-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .merit-badge {
+      padding: 0.65rem 1.1rem;
+      background: var(--sand);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.95rem;
+    }
+
+    /* Faculties Layout */
+    .faculty-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .faculty-row {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+    }
+
+    .faculty-meta {
+      padding: 2.2rem;
+      background: #fcfbf9;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .faculty-meta h3 {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      color: var(--navy);
+      margin: 0.4rem 0 0.8rem;
+    }
+
+    .faculty-meta p {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    .partners-caption {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .faculty-programs {
+      padding: 2.2rem;
+    }
+
+    .program-item {
+      padding-bottom: 1.4rem;
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .program-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .program-item h4 {
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .program-item p {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+    }
+
+    /* Track / Specialization Boxes (Warm Yellow/Sand Highlight) */
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.85rem;
+    }
+
+    .track-box {
+      border: 1px solid #e6dbb9;
+      background: #fbf7eb;
+      padding: 0.7rem 0.95rem;
+      font-size: 0.86rem;
+    }
+
+    .track-box strong {
+      display: block;
+      color: var(--navy);
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .track-box span {
+      color: var(--ink-soft);
+      font-size: 0.8rem;
+      display: block;
+      line-height: 1.4;
+    }
+
+    /* Application Form */
+    .application-wrap {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .form-box {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .field {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      font-size: 0.95rem;
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--navy);
+    }
+
+    .admissions-notes {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .admissions-notes h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .steps-list {
+      list-style: none;
+    }
+
+    .steps-list li {
+      padding-left: 1.4rem;
+      position: relative;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+    }
+
+    .steps-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--crimson);
+      font-weight: 700;
+    }
+
+    .confirmation-banner {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.4rem;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #14532d;
+      font-size: 0.94rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      color: #cbd5e1;
+      padding: 2.2rem 6%;
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-block, .faculty-row, .application-wrap {
+        grid-template-columns: 1fr;
+      }
+      .hero-content, .faculty-meta {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .pillars-grid, .form-grid {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tricolor-rule"><span></span><span></span><span></span></div>
+  <div class="top-utility">
+    <span>El Shorouk City, Cairo • Accredited by the Egyptian Supreme Council of Universities</span>
+    <span>Admissions Office: +20 2 2687 5890</span>
+  </div>
+
+  <header>
+    <a href="index.html" class="brand" data-route="home">
+      <div class="brand-monogram">UFE</div>
+      <div class="brand-text">
+        <span class="brand-title">Université Française d'Égypte</span>
+        <span class="brand-sub">Admissions &amp; Academic Portal</span>
+      </div>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home" data-route="home">Home</a></li>
+        <li><a href="faculties/index.html" id="nav-faculties" data-route="faculties">Faculties</a></li>
+        <li><a href="apply/index.html" id="nav-apply" class="nav-cta" data-route="apply">Enroll Online</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ==================== 1. HOME ==================== -->
+    <section id="view-home" class="view active">
+      <div class="hero-block">
+        <div class="hero-content">
+          <span class="eyebrow">Academic Year 2026 / 2027</span>
+          <h1>French Academic Rigor in the Heart of Cairo.</h1>
+          <p>
+            Established in partnership with leading French public universities, UFE offers dual-accredited undergraduate programs in Engineering, Business, and Applied Languages.
+          </p>
+          <div class="hero-actions">
+            <a href="apply/index.html" class="btn btn-primary" data-route="apply">Begin Application</a>
+            <a href="faculties/index.html" class="btn btn-secondary" data-route="faculties">Browse Faculties</a>
+          </div>
+        </div>
+
+        <aside class="hero-sidebar">
+          <div>
+            <h2>Key Admissions Facts</h2>
+            <div class="fact-row">
+              <span class="fact-label">Degrees Awarded</span>
+              <span class="fact-value">Egyptian Bachelor + French State Degree</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Languages of Instruction</span>
+              <span class="fact-value">French, English &amp; Arabic</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">French Requirement</span>
+              <span class="fact-value">Beginners welcome via Intensive FLE Track</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Campus</span>
+              <span class="fact-value">El Shorouk City, Greater Cairo</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>Academic Distinction</h2>
+          <p>Structured around European LMD (Licence–Master–Doctorat) standards.</p>
+        </div>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <span class="pillar-num">01 / DUAL ACCREDITATION</span>
+          <h3>Recognized in Egypt &amp; Europe</h3>
+          <p>Students graduate with both an official Egyptian university degree and a French national diploma issued by our partner institutions.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">02 / ACCESSIBLE TRACKS</span>
+          <h3>English &amp; French Pathways</h3>
+          <p>No prior knowledge of French is required for admission. Students build French proficiency progressively alongside core coursework.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">03 / INTERNATIONAL MOBILITY</span>
+          <h3>Semesters &amp; Internships in France</h3>
+          <p>Qualified students complete exchange semesters or final-year graduation projects at partner laboratories and firms in France.</p>
+        </div>
+      </div>
+
+      <div class="tuition-panel">
+        <div>
+          <h3>Merit Scholarship Check</h3>
+          <p style="font-size: 0.9rem; color: var(--ink-soft);">Select your high school certificate average to view automatic tuition reductions.</p>
+        </div>
+        <div class="tuition-controls">
+          <select id="gradeSelect" style="width: auto; min-width: 230px;">
+            <option value="25% Tuition Reduction">95% and above (Excellence)</option>
+            <option value="15% Tuition Reduction">90% – 94.9% (Honors)</option>
+            <option value="10% Tuition Reduction">85% – 89.9% (Merit)</option>
+            <option value="Standard Tuition Tier">Below 85% (Regular Admission)</option>
+          </select>
+          <div id="meritOutput" class="merit-badge">25% Tuition Reduction</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. FACULTIES ==================== -->
+    <section id="view-faculties" class="view">
+      <div class="section-head">
+        <div>
+          <h2>Faculties &amp; Departments</h2>
+          <p>Explore undergraduate majors and specialized tracks offered across UFE's three faculties.</p>
+        </div>
+      </div>
+
+      <div class="faculty-stack">
+        <!-- Faculty 1: Engineering -->
+        <article class="faculty-row">
+          <div class="faculty-meta">
+            <div>
+              <span class="eyebrow">Faculty 01</span>
+              <h3>Faculty of Engineering</h3>
+              <p>Combining mathematical foundations, laboratory prototyping, and industrial internships.</p>
+            </div>
+            <div>
+              <div class="partners-caption">
+                <strong>French Academic Partners:</strong><br />
+                Polytech Nantes, INSA Strasbourg, Université de Haute-Alsace
+              </div>
+              <a href="apply/index.html?faculty=Engineering" class="btn btn-primary" data-route="apply" data-faculty="Engineering">Apply to Engineering</a>
+            </div>
+          </div>
+
+          <div class="faculty-programs">
+            <div class="program-item">
+              <h4>Computer Engineering</h4>
+              <p>Specialized concentrations in software, networks, and intelligent hardware:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Cybersecurity &amp; Communications</strong>
+                  <span>Network defense, cryptography, wireless &amp; telecom systems</span>
+                </div>
+                <div class="track-box">
+                  <strong>Artificial Intelligence</strong>
+                  <span>Machine learning, computer vision &amp; data science</span>
+                </div>
+                <div class="track-box">
+                  <strong>Embedded Systems</strong>
+                  <span>Microcontrollers, IoT &amp; real-time hardware design</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-item">
+              <h4>Mechanical Engineering</h4>
+              <p>Focuses on industrial automation and electromechanical design:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Robotics &amp; Mechatronics</strong>
+                  <span>Control systems, sensors &amp; automated machinery</span>
+                </div>
+                <div class="track-box">
+                  <strong>Production &amp; Manufacturing</strong>
+                  <span>Industrial processes, CAD/CAM &amp; quality engineering</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-item">
+              <h4>Architecture</h4>
+              <p>Architectural design, urban planning, and sustainable construction:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Sustainable Architecture</strong>
+                  <span>Bioclimatic design &amp; environmental building systems</span>
+                </div>
+                <div class="track-box">
+                  <strong>Urban Design &amp; Heritage</strong>
+                  <span>Smart city planning &amp; architectural conservation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Faculty 2: Management -->
+        <article class="faculty-row">
+          <div class="faculty-meta">
+            <div>
+              <span class="eyebrow">Faculty 02</span>
+              <h3>Faculty of Management &amp; Information Systems</h3>
+              <p>Preparing graduates for international finance, digital enterprise management, and consulting.</p>
+            </div>
+            <div>
+              <div class="partners-caption">
+                <strong>French Academic Partners:</strong><br />
+                IAE Nantes, Université Paris 1 Panthéon-Sorbonne
+              </div>
+              <a href="apply/index.html?faculty=Management" class="btn btn-primary" data-route="apply" data-faculty="Management">Apply to Management</a>
+            </div>
+          </div>
+
+          <div class="faculty-programs">
+            <div class="program-item">
+              <h4>Finance &amp; Accounting</h4>
+              <p>Financial analysis, corporate governance, and global banking standards:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Corporate Finance</strong>
+                  <span>Valuation, capital budgeting &amp; investment management</span>
+                </div>
+                <div class="track-box">
+                  <strong>Auditing &amp; Banking</strong>
+                  <span>International accounting standards &amp; risk control</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-item">
+              <h4>MIAGE (Business Informatics)</h4>
+              <p>Bridging enterprise management with information systems engineering:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Information Systems Architecture</strong>
+                  <span>Enterprise databases, ERP &amp; digital transformation</span>
+                </div>
+                <div class="track-box">
+                  <strong>Business Data Analytics</strong>
+                  <span>Decision support systems &amp; applied business intelligence</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-item">
+              <h4>Marketing &amp; International Business</h4>
+              <p>Strategic brand management and cross-border commercial operations:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Digital &amp; Brand Strategy</strong>
+                  <span>Consumer behavior, market research &amp; digital channels</span>
+                </div>
+                <div class="track-box">
+                  <strong>Global Trade &amp; Supply Chain</strong>
+                  <span>International logistics &amp; export-import operations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Faculty 3: Languages -->
+        <article class="faculty-row">
+          <div class="faculty-meta">
+            <div>
+              <span class="eyebrow">Faculty 03</span>
+              <h3>Faculty of Applied Languages (LEA)</h3>
+              <p>Trilingual training in Arabic, French, and English for diplomacy, media, and international trade.</p>
+            </div>
+            <div>
+              <div class="partners-caption">
+                <strong>French Academic Partners:</strong><br />
+                Université Sorbonne Nouvelle (Paris 3)
+              </div>
+              <a href="apply/index.html?faculty=Languages" class="btn btn-primary" data-route="apply" data-faculty="Languages">Apply to Languages</a>
+            </div>
+          </div>
+
+          <div class="faculty-programs">
+            <div class="program-item">
+              <h4>Specialized Translation &amp; Interpretation</h4>
+              <p>Professional trilingual translation across Arabic, French, and English:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>Legal &amp; Diplomatic Translation</strong>
+                  <span>Treaties, international law &amp; institutional affairs</span>
+                </div>
+                <div class="track-box">
+                  <strong>Economic &amp; Technical Translation</strong>
+                  <span>Financial reporting, corporate &amp; scientific texts</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-item">
+              <h4>Multilingual Business &amp; Media Communication</h4>
+              <p>Cross-cultural communication for international organizations and media:</p>
+              <div class="track-grid">
+                <div class="track-box">
+                  <strong>International Corporate Relations</strong>
+                  <span>Public relations, negotiation &amp; cultural diplomacy</span>
+                </div>
+                <div class="track-box">
+                  <strong>Digital Media &amp; Journalism</strong>
+                  <span>Editorial production &amp; multilingual content strategy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== 3. APPLY / ENROLLMENT ==================== -->
+    <section id="view-apply" class="view">
+      <div class="section-head">
+        <div>
+          <h2>Student Enrollment Application</h2>
+          <p>Submit your initial application file for the 2026 / 2027 intake.</p>
+        </div>
+      </div>
+
+      <div class="application-wrap">
+        <div class="form-box">
+          <form id="enrollmentForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" required placeholder="First name" />
+              </div>
+              <div class="field">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" required placeholder="Family name" />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" required placeholder="name@example.com" />
+              </div>
+              <div class="field">
+                <label for="phone">Mobile Phone *</label>
+                <input type="tel" id="phone" required placeholder="+20 1X XXXX XXXX" />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="certificate">Secondary School Certificate *</label>
+                <select id="certificate" required>
+                  <option value="">Select certificate</option>
+                  <option value="Thanaweya Amma">Thanaweya Amma</option>
+                  <option value="French Baccalaureate">French Baccalaureate</option>
+                  <option value="IGCSE / British">IGCSE / British Curriculum</option>
+                  <option value="American Diploma">American High School Diploma</option>
+                  <option value="IB / Equivalent">International Baccalaureate (IB) / Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="facultySelect">Faculty Choice *</label>
+                <select id="facultySelect" required>
+                  <option value="">Select faculty</option>
+                  <option value="Engineering">Faculty of Engineering</option>
+                  <option value="Management">Faculty of Management &amp; Information Systems</option>
+                  <option value="Languages">Faculty of Applied Languages (LEA)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field" id="engTrackField" style="display: none;">
+              <label for="engTrack">Engineering Specialization Preference</label>
+              <select id="engTrack">
+                <option value="Computer Engineering — Cybersecurity & Communications">Computer Engineering — Cybersecurity &amp; Communications</option>
+                <option value="Computer Engineering — Artificial Intelligence">Computer Engineering — Artificial Intelligence</option>
+                <option value="Computer Engineering — Embedded Systems">Computer Engineering — Embedded Systems</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Architecture">Architecture</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="frenchLevel">French Language Background</label>
+              <select id="frenchLevel">
+                <option value="Beginner (Intensive FLE Track)">Beginner — No prior French (Intensive FLE Track)</option>
+                <option value="Intermediate (DELF A2 / B1)">Intermediate — School French / DELF A2–B1</option>
+                <option value="Advanced (DELF B2+ / French Bac)">Advanced — French School / DELF B2 or C1</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+          </form>
+
+          <div id="confirmationBanner" class="confirmation-banner"></div>
+        </div>
+
+        <aside class="admissions-notes">
+          <h3>Admissions Process</h3>
+          <ul class="steps-list">
+            <li><strong>Online Pre-Registration:</strong> Complete this form to generate your applicant reference number.</li>
+            <li><strong>Document Review:</strong> Bring your birth certificate, national ID/passport, and high school transcripts to El Shorouk Campus.</li>
+            <li><strong>Language Placement:</strong> Sit for the English and French placement assessment to determine your starting language level.</li>
+            <li><strong>Final Enrollment:</strong> Confirm your seat and complete tuition registration.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>&copy; 2026 Université Française d'Égypte (UFE). All rights reserved.</span>
+    <span>El Shorouk City, Cairo Governorate, Egypt</span>
+  </footer>
+
+  <script>
+    // Detect whether opened from root folder or /faculties/ or /apply/ subfolder
+    const currentPath = window.location.pathname.toLowerCase();
+    const inSubfolder = currentPath.includes('/faculties/') || currentPath.includes('/apply/');
+
+    if (inSubfolder) {
+      document.querySelectorAll('[data-route="home"]').forEach(a => a.setAttribute('href', '../index.html'));
+      document.querySelectorAll('[data-route="faculties"]').forEach(a => a.setAttribute('href', '../faculties/index.html'));
+      document.querySelectorAll('[data-route="apply"]').forEach(a => {
+        const fac = a.getAttribute('data-faculty');
+        a.setAttribute('href', fac ? `../apply/index.html?faculty=${fac}` : '../apply/index.html');
+      });
+    }
+
+    const facultySelect = document.getElementById('facultySelect');
+    const engTrackField = document.getElementById('engTrackField');
+
+    function updateEngineeringField() {
+      engTrackField.style.display = facultySelect.value === 'Engineering' ? 'block' : 'none';
+    }
+    facultySelect.addEventListener('change', updateEngineeringField);
+
+    function activateView(route, facultyPrefill) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+
+      const viewEl = document.getElementById('view-' + route) || document.getElementById('view-home');
+      const navEl = document.getElementById('nav-' + route) || document.getElementById('nav-home');
+
+      viewEl.classList.add('active');
+      navEl.classList.add('active');
+
+      if (facultyPrefill) {
+        facultySelect.value = facultyPrefill;
+        updateEngineeringField();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Initial route load
+    const params = new URLSearchParams(window.location.search);
+    if (currentPath.includes('/faculties/')) {
+      activateView('faculties');
+    } else if (currentPath.includes('/apply/')) {
+      activateView('apply', params.get('faculty'));
+    } else {
+      activateView('home');
+    }
+
+    // Allow instant navigation when run as a single file without subfolders
+    document.querySelectorAll('[data-route]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        if (!inSubfolder && window.location.protocol === 'file:') {
+          e.preventDefault();
+          activateView(this.getAttribute('data-route'), this.getAttribute('data-faculty'));
+        }
+      });
+    });
+
+    // Merit Scholarship Selector
+    document.getElementById('gradeSelect').addEventListener('change', function () {
+      document.getElementById('meritOutput').textContent = this.value;
+    });
+
+    // Application Form Submission
+    document.getElementById('enrollmentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const fullName = document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim();
+      const faculty = facultySelect.value;
+      const track = faculty === 'Engineering' ? ' — ' + document.getElementById('engTrack').value : '';
+      const refNumber = 'UFE-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000);
+
+      const banner = document.getElementById('confirmationBanner');
+      banner.innerHTML =
+        `<strong>Application Recorded — Reference ${refNumber}</strong><br />` +
+        `Applicant: ${fullName}<br />` +
+        `Program: Faculty of ${faculty}${track}<br />` +
+        `The Admissions Office will contact you via email with your placement test appointment.`;
+      banner.style.display = 'block';
+
+      this.reset();
+      updateEngineeringField();
+    });
+  </script>
+</body>
+</html>
