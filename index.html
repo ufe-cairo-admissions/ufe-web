@@ -616,7 +616,7 @@
   </div>
 
   <header>
-    <a href="index.html" class="brand" data-route="home">
+    <a href="#home" class="brand" data-route="home">
       <div class="brand-monogram">UFE</div>
       <div class="brand-text">
         <span class="brand-title">Université Française d'Égypte</span>
@@ -626,9 +626,9 @@
 
     <nav>
       <ul>
-        <li><a href="index.html" id="nav-home" data-route="home">Home</a></li>
-        <li><a href="faculties/index.html" id="nav-faculties" data-route="faculties">Faculties</a></li>
-        <li><a href="apply/index.html" id="nav-apply" class="nav-cta" data-route="apply">Enroll Online</a></li>
+        <li><a href="#home" id="nav-home" class="active" data-route="home">Home</a></li>
+        <li><a href="#faculties" id="nav-faculties" data-route="faculties">Faculties</a></li>
+        <li><a href="#apply" id="nav-apply" class="nav-cta" data-route="apply">Enroll Online</a></li>
       </ul>
     </nav>
   </header>
@@ -644,8 +644,8 @@
             Established in partnership with leading French public universities, UFE offers dual-accredited undergraduate programs in Engineering, Business, and Applied Languages.
           </p>
           <div class="hero-actions">
-            <a href="apply/index.html" class="btn btn-primary" data-route="apply">Begin Application</a>
-            <a href="faculties/index.html" class="btn btn-secondary" data-route="faculties">Browse Faculties</a>
+            <a href="#apply" class="btn btn-primary" data-route="apply">Begin Application</a>
+            <a href="#faculties" class="btn btn-secondary" data-route="faculties">Browse Faculties</a>
           </div>
         </div>
 
@@ -737,7 +737,7 @@
                 <strong>French Academic Partners:</strong><br />
                 Polytech Nantes, INSA Strasbourg, Université de Haute-Alsace
               </div>
-              <a href="apply/index.html?faculty=Engineering" class="btn btn-primary" data-route="apply" data-faculty="Engineering">Apply to Engineering</a>
+              <a href="#apply" class="btn btn-primary" data-route="apply" data-faculty="Engineering">Apply to Engineering</a>
             </div>
           </div>
 
@@ -806,7 +806,7 @@
                 <strong>French Academic Partners:</strong><br />
                 IAE Nantes, Université Paris 1 Panthéon-Sorbonne
               </div>
-              <a href="apply/index.html?faculty=Management" class="btn btn-primary" data-route="apply" data-faculty="Management">Apply to Management</a>
+              <a href="#apply" class="btn btn-primary" data-route="apply" data-faculty="Management">Apply to Management</a>
             </div>
           </div>
 
@@ -871,7 +871,7 @@
                 <strong>French Academic Partners:</strong><br />
                 Université Sorbonne Nouvelle (Paris 3)
               </div>
-              <a href="apply/index.html?faculty=Languages" class="btn btn-primary" data-route="apply" data-faculty="Languages">Apply to Languages</a>
+              <a href="#apply" class="btn btn-primary" data-route="apply" data-faculty="Languages">Apply to Languages</a>
             </div>
           </div>
 
@@ -1012,88 +1012,87 @@
   </footer>
 
   <script>
-    // Detect whether opened from root folder or /faculties/ or /apply/ subfolder
-    const currentPath = window.location.pathname.toLowerCase();
-    const inSubfolder = currentPath.includes('/faculties/') || currentPath.includes('/apply/');
+    const views = {
+      home: document.getElementById('view-home'),
+      faculties: document.getElementById('view-faculties'),
+      apply: document.getElementById('view-apply')
+    };
 
-    if (inSubfolder) {
-      document.querySelectorAll('[data-route="home"]').forEach(a => a.setAttribute('href', '../index.html'));
-      document.querySelectorAll('[data-route="faculties"]').forEach(a => a.setAttribute('href', '../faculties/index.html'));
-      document.querySelectorAll('[data-route="apply"]').forEach(a => {
-        const fac = a.getAttribute('data-faculty');
-        a.setAttribute('href', fac ? `../apply/index.html?faculty=${fac}` : '../apply/index.html');
+    const navLinks = {
+      home: document.getElementById('nav-home'),
+      faculties: document.getElementById('nav-faculties'),
+      apply: document.getElementById('nav-apply')
+    };
+
+    function showView(routeName, facultyName) {
+      Object.values(views).forEach(v => v && v.classList.remove('active'));
+      Object.values(navLinks).forEach(a => a && a.classList.remove('active'));
+
+      if (views[routeName]) {
+        views[routeName].classList.add('active');
+      }
+      if (navLinks[routeName]) {
+        navLinks[routeName].classList.add('active');
+      }
+
+      if (facultyName) {
+        const facultySelect = document.getElementById('facultySelect');
+        const engTrackField = document.getElementById('engTrackField');
+        if (facultySelect) {
+          facultySelect.value = facultyName;
+          if (engTrackField) {
+            engTrackField.style.display = facultyName === 'Engineering' ? 'block' : 'none';
+          }
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-route]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const route = link.getAttribute('data-route');
+        const faculty = link.getAttribute('data-faculty');
+        showView(route, faculty);
+      });
+    });
+
+    const gradeSelect = document.getElementById('gradeSelect');
+    const meritOutput = document.getElementById('meritOutput');
+    if (gradeSelect && meritOutput) {
+      gradeSelect.addEventListener('change', () => {
+        meritOutput.textContent = gradeSelect.value;
       });
     }
 
     const facultySelect = document.getElementById('facultySelect');
     const engTrackField = document.getElementById('engTrackField');
-
-    function updateEngineeringField() {
-      engTrackField.style.display = facultySelect.value === 'Engineering' ? 'block' : 'none';
-    }
-    facultySelect.addEventListener('change', updateEngineeringField);
-
-    function activateView(route, facultyPrefill) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-
-      const viewEl = document.getElementById('view-' + route) || document.getElementById('view-home');
-      const navEl = document.getElementById('nav-' + route) || document.getElementById('nav-home');
-
-      viewEl.classList.add('active');
-      navEl.classList.add('active');
-
-      if (facultyPrefill) {
-        facultySelect.value = facultyPrefill;
-        updateEngineeringField();
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Initial route load
-    const params = new URLSearchParams(window.location.search);
-    if (currentPath.includes('/faculties/')) {
-      activateView('faculties');
-    } else if (currentPath.includes('/apply/')) {
-      activateView('apply', params.get('faculty'));
-    } else {
-      activateView('home');
-    }
-
-    // Allow instant navigation when run as a single file without subfolders
-    document.querySelectorAll('[data-route]').forEach(link => {
-      link.addEventListener('click', function (e) {
-        if (!inSubfolder && window.location.protocol === 'file:') {
-          e.preventDefault();
-          activateView(this.getAttribute('data-route'), this.getAttribute('data-faculty'));
-        }
+    if (facultySelect && engTrackField) {
+      facultySelect.addEventListener('change', () => {
+        engTrackField.style.display = facultySelect.value === 'Engineering' ? 'block' : 'none';
       });
-    });
+    }
 
-    // Merit Scholarship Selector
-    document.getElementById('gradeSelect').addEventListener('change', function () {
-      document.getElementById('meritOutput').textContent = this.value;
-    });
+    const enrollmentForm = document.getElementById('enrollmentForm');
+    const confirmationBanner = document.getElementById('confirmationBanner');
+    if (enrollmentForm && confirmationBanner) {
+      enrollmentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const first = document.getElementById('firstName').value.trim();
+        const last = document.getElementById('lastName').value.trim();
+        const fac = document.getElementById('facultySelect').value;
+        const refCode = 'UFE-2026-' + Math.floor(10000 + Math.random() * 90000);
 
-    // Application Form Submission
-    document.getElementById('enrollmentForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const fullName = document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim();
-      const faculty = facultySelect.value;
-      const track = faculty === 'Engineering' ? ' — ' + document.getElementById('engTrack').value : '';
-      const refNumber = 'UFE-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000);
-
-      const banner = document.getElementById('confirmationBanner');
-      banner.innerHTML =
-        `<strong>Application Recorded — Reference ${refNumber}</strong><br />` +
-        `Applicant: ${fullName}<br />` +
-        `Program: Faculty of ${faculty}${track}<br />` +
-        `The Admissions Office will contact you via email with your placement test appointment.`;
-      banner.style.display = 'block';
-
-      this.reset();
-      updateEngineeringField();
-    });
+        confirmationBanner.style.display = 'block';
+        confirmationBanner.innerHTML =
+          '<strong>Application Received:</strong> Thank you, ' + first + ' ' + last +
+          '. Your pre-registration for <strong>' + fac +
+          '</strong> is logged under reference <strong>' + refCode + '</strong>.';
+        enrollmentForm.reset();
+        if (engTrackField) engTrackField.style.display = 'none';
+      });
+    }
   </script>
 </body>
 </html>
